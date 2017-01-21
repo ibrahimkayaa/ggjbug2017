@@ -27,6 +27,7 @@ public class movement : MonoBehaviour {
 
 		pos = transform.position;
 		tr = transform;
+
 		rb = GetComponent <Rigidbody> ();
 	
 	}
