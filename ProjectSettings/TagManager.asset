@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - box
+  - Rock
+  - SandCastle
+  - Bottle
+  - Ship
+  - Trap
+  - Hole
   layers:
   - Default
   - TransparentFX

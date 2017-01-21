@@ -66,24 +66,13 @@ public class ibrahimCrab : MonoBehaviour {
 			Debug.Log ("Position to Check : " + posToCheck);
 				
 			}
-
-			/*if(eye == EyeSight.DOWN || eye == EyeSight.LEFT){
-
-				posToCheck = (horizontal) ? new Vector3 (transform.position.x + 1f, transform.position.y - 1f, transform.position.z) : new Vector3 (transform.position.x , transform.position.y - 1f, transform.position.z +1f);
-				Debug.Log ("Position to Check : " + posToCheck);
-			}else if( eye == EyeSight.UP  || eye == EyeSight.RIGHT){
-
-				posToCheck = (horizontal) ? new Vector3 (transform.position.x - 1f, transform.position.y - 1f, transform.position.z) : new Vector3 (transform.position.x , transform.position.y - 1f, transform.position.z -1f);
-				Debug.Log ("Position to Check : " + posToCheck);
-			}*/
-			/*Vector3 posToCheck = (horizontal) ? new Vector3 (transform.position.x + 1f, transform.position.y - 1f, transform.position.z) : new Vector3 (transform.position.x , transform.position.y - 1f, transform.position.z -1f);
-			Debug.Log ("Position to Check : " + posToCheck);*/
+				
 
 			if(Physics.Raycast(posToCheck,Vector3.up,out hitInfo,1.5f)){
 
 				if(hitInfo.collider.GetComponent <BoxCollider>()){
 
-					Debug.Log (hitInfo.collider.tag);
+
 
 				}
 
@@ -93,9 +82,8 @@ public class ibrahimCrab : MonoBehaviour {
 
 
 
-				transform.position = new Vector3 (Mathf.Clamp (posToCheck.x,-4f,20f) , transform.position.y, Mathf.Clamp (posToCheck.z,-4f,4f));
-				/*Vector3 tempPos = new Vector3 (Mathf.Clamp (posToCheck.x,-4f,20f) , transform.position.y, Mathf.Clamp (posToCheck.z,-4f,4f));
-				transform.position = Mathf.MoveTowards (transform.position, tempPos , Time.deltaTime * speed);*/
+				transform.position = new Vector3 (Mathf.Clamp (posToCheck.x,-4f,20f) , transform.position.y, Mathf.Clamp (posToCheck.z,-3f,2f));
+		
 			}
 
 			Debug.Log ("out out amk");
@@ -128,25 +116,12 @@ public class ibrahimCrab : MonoBehaviour {
 
 
 
-			/*if(eye == EyeSight.DOWN || eye == EyeSight.LEFT){
-
-				posToCheck = (horizontal) ? new Vector3 (transform.position.x -1f, transform.position.y - 1f, transform.position.z) : new Vector3 (transform.position.x , transform.position.y - 1f, transform.position.z -1f);
-				Debug.Log ("Position to Check : " + posToCheck);
-			}else if(eye == EyeSight.UP || eye == EyeSight.RIGHT){
-
-				posToCheck = (horizontal) ? new Vector3 (transform.position.x +1f, transform.position.y - 1f, transform.position.z) : new Vector3 (transform.position.x , transform.position.y - 1f, transform.position.z +1f);
-				Debug.Log ("Position to Check : " + posToCheck);
-				
-			}*/
-
-			/*posToCheck = (horizontal) ? new Vector3 (transform.position.x -1f, transform.position.y - 1f, transform.position.z) : new Vector3 (transform.position.x , transform.position.y - 1f, transform.position.z +1f);
-			Debug.Log ("Position to Check : " + posToCheck);*/
-
 			if(Physics.Raycast(posToCheck,Vector3.up,out hitInfo,1.5f)){
 
 				if(hitInfo.collider.GetComponent <BoxCollider>()){
 
 					Debug.Log (hitInfo.collider.tag);
+					CheckColliderTags (hitInfo);
 
 				}
 
@@ -155,9 +130,7 @@ public class ibrahimCrab : MonoBehaviour {
 			}else{
 
 				Debug.Log ("Nothing");
-				transform.position = new Vector3 (Mathf.Clamp (posToCheck.x,-4f,20f), transform.position.y, Mathf.Clamp ( posToCheck.z, -4f,4f));
-				/*Vector3 tempPos = new Vector3 (Mathf.Clamp (posToCheck.x,-4f,20f) , transform.position.y, Mathf.Clamp (posToCheck.z,-4f,4f));
-				transform.position = Mathf.MoveTowards (transform.position, tempPos , Time.deltaTime * speed);*/
+				transform.position = new Vector3 (Mathf.Clamp (posToCheck.x,-4f,20f), transform.position.y, Mathf.Clamp ( posToCheck.z, -3f,2f));
 
 			}
 		}
@@ -196,6 +169,27 @@ public class ibrahimCrab : MonoBehaviour {
 			}
 			Debug.Log (eye);
 			
+		}
+	}
+
+	void CheckColliderTags(RaycastHit hit){
+		switch(hit.collider.tag){
+
+		case "Trap":
+
+			Debug.Log ("It is a trap");
+
+			break;
+		case "Hole":
+
+			Debug.Log ("It is a hole");
+
+
+			break;
+	
+		default:
+			break;
+
 		}
 	}
 }
