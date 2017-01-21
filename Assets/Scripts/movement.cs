@@ -40,6 +40,8 @@ public class movement : MonoBehaviour {
 	}
 
 
+
+
 	void GetPlayerInput(){
 
 
@@ -70,7 +72,24 @@ public class movement : MonoBehaviour {
 			lastPos = pos;
 		}
 
-		if(Input.GetKeyDown (KeyCode.W) ){
+		if(CanMoveSides ()){
+
+			if(Input.GetKeyDown (KeyCode.W) ){
+
+
+				transform.Rotate (0f, -90f , 0f,Space.World);
+				horizontal = !horizontal;
+
+
+			}else if(Input.GetKeyDown (KeyCode.S)){
+
+				transform.Rotate (0f, 90f, 0f,Space.World);
+				horizontal = !horizontal;
+			}
+			
+		}
+
+		/*if(Input.GetKeyDown (KeyCode.W) ){
 
 
 			transform.Rotate (0f, -90f , 0f,Space.World);
@@ -81,11 +100,17 @@ public class movement : MonoBehaviour {
 
 			transform.Rotate (0f, 90f, 0f,Space.World);
 			horizontal = !horizontal;
+		}*/
+
+
+		if(CanMoveTowards ())
+		{
+
+			transform.position = Vector3.MoveTowards (transform.position, pos ,Time.deltaTime * speed);
 		}
 
 
-	
-		transform.position =Vector3.MoveTowards (transform.position, pos ,Time.deltaTime * speed);
+
 		//rb.MovePosition (pos);
 		//transform.position = new Vector3(pos.x,transform.position.y,pos.z);
 		//lastPos = transform.position;
@@ -96,7 +121,82 @@ public class movement : MonoBehaviour {
 		
 	}
 
-	void OnCollisionEnter(Collision other){
+	bool CanMoveSides(){
+
+		RaycastHit hitInfo;
+
+		Vector3 fwd = transform.TransformDirection (Vector3.forward);
+		Vector3 bck = transform.TransformDirection (Vector3.back);
+
+
+		if(Physics.Raycast(transform.position,fwd,out hitInfo,1f)){
+
+			if(hitInfo.collider.tag == "box"){
+				Debug.Log ("There is something back of the crab");
+				return false;
+			}
+		}
+
+		if(Physics.Raycast(transform.position,bck,out hitInfo,1f)){
+
+			if(hitInfo.collider.tag == "box"){
+				Debug.Log ("There is something in front of the crab");
+				return false;
+			}
+		}
+			
+
+		return true;
+
+		
+	}
+
+
+	bool CanMoveTowards(){
+
+		RaycastHit hitInfo;
+
+		//Vector3 fwd = transform.TransformDirection (Vector3.forward);
+		//Vector3 bck = transform.TransformDirection (Vector3.back);
+		Vector3 right = transform.TransformDirection (Vector3.right);
+		Vector3 left = transform.TransformDirection (Vector3.left);
+
+		/*if(Physics.Raycast(transform.position,fwd,out hitInfo,1f)){
+
+			if(hitInfo.collider.tag == "box"){
+				Debug.Log ("There is something back of the crab");
+				return false;
+			}
+		}
+
+		if(Physics.Raycast(transform.position,bck,out hitInfo,1f)){
+
+			if(hitInfo.collider.tag == "box"){
+				Debug.Log ("There is something in front of the crab");
+				return false;
+			}
+		}*/
+
+		if(Physics.Raycast(transform.position,left,out hitInfo,1f)){
+
+			if(hitInfo.collider.tag == "box"){
+				Debug.Log ("There is something on the right of the crab");
+				return false;
+			}
+		}
+
+		if(Physics.Raycast(transform.position,right,out hitInfo,1f)){
+
+			if(hitInfo.collider.tag == "box"){
+				Debug.Log ("There is something on the left of the crab");
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/*void OnCollisionEnter(Collision other){
 
 		if(other.gameObject.tag == "box"){
 			Debug.Log ("AMK");
@@ -107,7 +207,7 @@ public class movement : MonoBehaviour {
 
 
 		}
-	}
+	}*/
 
 
 
