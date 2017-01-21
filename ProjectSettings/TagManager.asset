@@ -11,6 +11,7 @@ TagManager:
   - Ship
   - Trap
   - Hole
+  - Egg
   layers:
   - Default
   - TransparentFX
