@@ -43,7 +43,7 @@ public class ibrahimCrab : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(Input.GetKeyDown (KeyCode.A)){
+		if (Input.GetButtonDown ("Backward")) {
 			Debug.Log ("Crab position : " +transform.position);
 
 			RaycastHit hitInfo;
@@ -100,7 +100,7 @@ public class ibrahimCrab : MonoBehaviour {
 
 			Debug.Log ("out out amk");
 			
-		}else if(Input.GetKeyDown (KeyCode.D)){
+		}else if(Input.GetButtonDown ("Forward")){
 
 			Debug.Log ("Crab position : " +transform.position);
 
@@ -163,7 +163,7 @@ public class ibrahimCrab : MonoBehaviour {
 		}
 
 
-		if(Input.GetKeyDown(KeyCode.W)){
+		if (Input.GetButtonDown ("TurnLeft")) {
 
 			transform.Rotate (0f,-90f,0f,Space.World);
 			horizontal = !horizontal;
@@ -180,7 +180,7 @@ public class ibrahimCrab : MonoBehaviour {
 
 			Debug.Log (eye);
 			
-		}else if(Input.GetKeyDown (KeyCode.S)){
+		}else if(Input.GetButtonDown ("TurnRight")){
 			
 			transform.Rotate (0f,90f,0f,Space.World);
 			horizontal = !horizontal;
