@@ -25,7 +25,14 @@ public class ibrahimCrab : MonoBehaviour {
 		LEFT
 	}
 
+	public enum GridType{
+		HOLE,
+		OTHER,
+
+	}
+
 	private EyeSight eye;
+	private GridType gType;
 
 	// Use this for initialization
 	void Start () {
@@ -36,12 +43,15 @@ public class ibrahimCrab : MonoBehaviour {
 		tr = transform;
 		pos = transform.position;
 		eye = EyeSight.DOWN;
+		gType = GridType.OTHER;
 
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+	
 
 		if (Input.GetButtonDown ("Backward")) {
 			Debug.Log ("Crab position : " +transform.position);
@@ -72,7 +82,7 @@ public class ibrahimCrab : MonoBehaviour {
 
 				if(hitInfo.collider.GetComponent <BoxCollider>()){
 
-
+					CheckColliderTags (hitInfo,posToCheck);
 
 				}
 
@@ -81,8 +91,8 @@ public class ibrahimCrab : MonoBehaviour {
 				Debug.Log ("Nothing");
 
 
-
-				transform.position = new Vector3 (Mathf.Clamp (posToCheck.x,-4f,20f) , transform.position.y, Mathf.Clamp (posToCheck.z,-3f,2f));
+				MoveToTheGrid (posToCheck);
+				//transform.position = new Vector3 (Mathf.Clamp (posToCheck.x,-4f,120f) , transform.position.y, Mathf.Clamp (posToCheck.z,-3f,2f));
 		
 			}
 
@@ -121,7 +131,7 @@ public class ibrahimCrab : MonoBehaviour {
 				if(hitInfo.collider.GetComponent <BoxCollider>()){
 
 					Debug.Log (hitInfo.collider.tag);
-					CheckColliderTags (hitInfo);
+					CheckColliderTags (hitInfo,posToCheck);
 
 				}
 
@@ -130,7 +140,8 @@ public class ibrahimCrab : MonoBehaviour {
 			}else{
 
 				Debug.Log ("Nothing");
-				transform.position = new Vector3 (Mathf.Clamp (posToCheck.x,-4f,20f), transform.position.y, Mathf.Clamp ( posToCheck.z, -3f,2f));
+				MoveToTheGrid (posToCheck);
+				//transform.position = new Vector3 (Mathf.Clamp (posToCheck.x,-4f,120f), transform.position.y, Mathf.Clamp ( posToCheck.z, -3f,2f));
 
 			}
 		}
@@ -172,7 +183,18 @@ public class ibrahimCrab : MonoBehaviour {
 		}
 	}
 
-	void CheckColliderTags(RaycastHit hit){
+	void MoveToTheGrid(Vector3 posToMove){
+
+		if(gType == GridType.HOLE){
+			gType = GridType.OTHER;
+			gameObject.GetComponent <BoxCollider>().enabled = true;
+		}
+
+		transform.position = new Vector3 (Mathf.Clamp (posToMove.x,-4f,120f), transform.position.y, Mathf.Clamp ( posToMove.z, -3f,2f));
+	}
+
+
+	void CheckColliderTags(RaycastHit hit, Vector3 posToMove){
 		switch(hit.collider.tag){
 
 		case "Trap":
@@ -183,11 +205,24 @@ public class ibrahimCrab : MonoBehaviour {
 		case "Hole":
 
 			Debug.Log ("It is a hole");
+			MoveToTheGrid (posToMove);
+			gameObject.GetComponent <BoxCollider> ().enabled = false;
+			gType = GridType.HOLE;
 
 
 			break;
+
+		case "Egg":
+
+			Debug.Log ("It is an Egg");
+			MoveToTheGrid (posToMove);
+			hit.collider.gameObject.SetActive (false);
+
+			break;
+
 	
 		default:
+
 			break;
 
 		}

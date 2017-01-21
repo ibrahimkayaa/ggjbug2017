@@ -12,6 +12,7 @@ TagManager:
   - Trap
   - Hole
   - Egg
+  - Ghost
   layers:
   - Default
   - TransparentFX
