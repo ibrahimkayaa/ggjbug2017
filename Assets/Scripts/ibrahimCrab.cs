@@ -51,107 +51,130 @@ public class ibrahimCrab : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-	
-
-		if (Input.GetButtonDown ("Backward")) {
-			Debug.Log ("Crab position : " +transform.position);
-
-			RaycastHit hitInfo;
 
 
-			if(!normalized){
+        if (Input.GetButtonDown("Backward"))
+        {
+            //Debug.Log ("Crab position : " +transform.position);
 
-				if(eye == EyeSight.DOWN || eye == EyeSight.LEFT){
-
-					posToCheck = (horizontal) ? new Vector3 (transform.position.x + 1f, transform.position.y - 1f, transform.position.z) : new Vector3 (transform.position.x , transform.position.y - 1f, transform.position.z +1f);
-					Debug.Log ("Position to Check : " + posToCheck);
-				}else if( eye == EyeSight.UP  || eye == EyeSight.RIGHT){
-
-					posToCheck = (horizontal) ? new Vector3 (transform.position.x - 1f, transform.position.y - 1f, transform.position.z) : new Vector3 (transform.position.x , transform.position.y - 1f, transform.position.z -1f);
-					Debug.Log ("Position to Check : " + posToCheck);
-				}
-			}else{
-
-				posToCheck = (horizontal) ? new Vector3 (transform.position.x - 1f, transform.position.y - 1f, transform.position.z) : new Vector3 (transform.position.x , transform.position.y - 1f, transform.position.z +1f);
-			Debug.Log ("Position to Check : " + posToCheck);
-				
-			}
-				
-
-			if(Physics.Raycast(posToCheck,Vector3.up,out hitInfo,1.5f)){
-
-				if(hitInfo.collider.GetComponent <BoxCollider>()){
-
-					Debug.Log (hitInfo.collider.tag);
-					CheckColliderTags (hitInfo,posToCheck);
-
-				}
-
-			}else{
+            RaycastHit hitInfo;
 
 
-				Debug.Log ("Nothing");
+            if (!normalized)
+            {
+
+                if (eye == EyeSight.DOWN || eye == EyeSight.LEFT)
+                {
+
+                    posToCheck = (horizontal) ? new Vector3(transform.position.x + 1f, transform.position.y - 1f, transform.position.z) : new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z + 1f);
+                    Debug.Log("Position to Check : " + posToCheck);
+                }
+                else if (eye == EyeSight.UP || eye == EyeSight.RIGHT)
+                {
+
+                    posToCheck = (horizontal) ? new Vector3(transform.position.x - 1f, transform.position.y - 1f, transform.position.z) : new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z - 1f);
+                    Debug.Log("Position to Check : " + posToCheck);
+                }
+            }
+            else
+            {
+
+                posToCheck = (horizontal) ? new Vector3(transform.position.x - 1f, transform.position.y - 1f, transform.position.z) : new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z + 1f);
+                //Debug.Log ("Position to Check : " + posToCheck);
+
+            }
 
 
-				MoveToTheGrid (posToCheck);
-				//transform.position = new Vector3 (Mathf.Clamp (posToCheck.x,-4f,120f) , transform.position.y, Mathf.Clamp (posToCheck.z,-3f,2f));
-		
-			}
+            if (Physics.Raycast(posToCheck, Vector3.up, out hitInfo, 1.5f))
+            {
 
-			Debug.Log ("out out amk");
-			
-		}else if(Input.GetButtonDown ("Forward")){
+                if (hitInfo.collider.GetComponent<BoxCollider>())
+                {
 
-			Debug.Log ("Crab position : " +transform.position);
+                    Debug.Log(hitInfo.collider.tag);
+                    CheckColliderTags(hitInfo, posToCheck);
 
-			RaycastHit hitInfo;
+                }
 
-			if(!normalized){
-
-				if(eye == EyeSight.DOWN || eye == EyeSight.LEFT){
-
-					posToCheck = (horizontal) ? new Vector3 (transform.position.x -1f, transform.position.y - 1f, transform.position.z) : new Vector3 (transform.position.x , transform.position.y - 1f, transform.position.z -1f);
-					Debug.Log ("Position to Check : " + posToCheck);
-				}else if(eye == EyeSight.UP || eye == EyeSight.RIGHT){
-
-					posToCheck = (horizontal) ? new Vector3 (transform.position.x +1f, transform.position.y - 1f, transform.position.z) : new Vector3 (transform.position.x , transform.position.y - 1f, transform.position.z +1f);
-					Debug.Log ("Position to Check : " + posToCheck);
-
-				}
-
-			}else{
-				posToCheck = (horizontal) ? new Vector3 (transform.position.x +1f, transform.position.y - 1f, transform.position.z) : new Vector3 (transform.position.x , transform.position.y - 1f, transform.position.z -1f);
-				Debug.Log ("Position to Check : " + posToCheck);
-
-				
-			}
+            }
+            else
+            {
 
 
-
-			if(Physics.Raycast(posToCheck,Vector3.up,out hitInfo,1.5f)){
-
-				if(hitInfo.collider.GetComponent <BoxCollider>()){
+                //Debug.Log ("Nothing");
 
 
-					Debug.Log (hitInfo.collider.tag);
-					CheckColliderTags (hitInfo,posToCheck);
-			
+                MoveToTheGrid(posToCheck);
+                //transform.position = new Vector3 (Mathf.Clamp (posToCheck.x,-4f,120f) , transform.position.y, Mathf.Clamp (posToCheck.z,-3f,2f));
 
-					//Debug.Log (hitInfo.collider.tag);
-					//CheckColliderTags (hitInfo,posToCheck);
+            }
 
-				}
+            //Debug.Log ("out out amk");
+
+        }
+        else if (Input.GetButtonDown("Forward"))
+        {
+
+            //Debug.Log("Crab position : " + transform.position);
+
+            RaycastHit hitInfo;
+
+            if (!normalized)
+            {
+
+                if (eye == EyeSight.DOWN || eye == EyeSight.LEFT)
+                {
+
+                    posToCheck = (horizontal) ? new Vector3(transform.position.x - 1f, transform.position.y - 1f, transform.position.z) : new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z - 1f);
+                    Debug.Log("Position to Check : " + posToCheck);
+                }
+                else if (eye == EyeSight.UP || eye == EyeSight.RIGHT)
+                {
+
+                    posToCheck = (horizontal) ? new Vector3(transform.position.x + 1f, transform.position.y - 1f, transform.position.z) : new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z + 1f);
+                    Debug.Log("Position to Check : " + posToCheck);
+
+                }
+
+            }
+            else
+            {
+                posToCheck = (horizontal) ? new Vector3(transform.position.x + 1f, transform.position.y - 1f, transform.position.z) : new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z - 1f);
+                //Debug.Log("Position to Check : " + posToCheck);
+
+
+            }
 
 
 
-			}else{
+            if (Physics.Raycast(posToCheck, Vector3.up, out hitInfo, 1.5f))
+            {
 
-				Debug.Log ("Nothing");
-				MoveToTheGrid (posToCheck);
-				//transform.position = new Vector3 (Mathf.Clamp (posToCheck.x,-4f,120f), transform.position.y, Mathf.Clamp ( posToCheck.z, -3f,2f));
+                if (hitInfo.collider.GetComponent<BoxCollider>())
+                {
 
-			}
-		}
+
+                    Debug.Log(hitInfo.collider.tag);
+                    CheckColliderTags(hitInfo, posToCheck);
+
+
+                    //Debug.Log (hitInfo.collider.tag);
+                    //CheckColliderTags (hitInfo,posToCheck);
+
+                }
+
+
+
+            }
+            else
+            {
+
+                //Debug.Log("Nothing");
+                MoveToTheGrid(posToCheck);
+                //transform.position = new Vector3 (Mathf.Clamp (posToCheck.x,-4f,120f), transform.position.y, Mathf.Clamp ( posToCheck.z, -3f,2f));
+
+            }
+        }
 
 		if(gType != GridType.HOLE){
 
@@ -168,6 +191,11 @@ public class ibrahimCrab : MonoBehaviour {
 
 
 	}
+
+    public void ForceMove(Vector3 pos)
+    {
+        MoveToTheGrid(pos);
+    }
 
 	void Turn(){
 
@@ -219,51 +247,87 @@ public class ibrahimCrab : MonoBehaviour {
 
 
 	void CheckColliderTags(RaycastHit hit, Vector3 posToMove){
-		switch(hit.collider.tag){
+        switch (hit.collider.tag)
+        {
 
-		case "Trap":
+            case "Trap":
 
-			Debug.Log ("It is a trap");
+                Debug.Log("It is a trap");
+                Died();
 
-			break;
-		case "Hole":
+                break;
+            case "Hole":
 
-			Debug.Log ("It is a hole");
-			MoveToTheGrid (posToMove);
+                Debug.Log("It is a hole");
+                MoveToTheGrid(posToMove);
 
-			if(eye != EyeSight.DOWN &&  (eye == EyeSight.LEFT || eye == EyeSight.RIGHT)){
+                if (eye != EyeSight.DOWN && (eye == EyeSight.LEFT || eye == EyeSight.RIGHT))
+                {
 
-				transform.rotation = Quaternion.Euler (0f, 0f, 0f);
-				horizontal = !horizontal;
-				eye = EyeSight.DOWN;
+                    transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                    horizontal = !horizontal;
+                    eye = EyeSight.DOWN;
 
-			}else if (eye == EyeSight.UP){
-				transform.Rotate (0f, 180f, 0f, Space.World);
+                }
+                else if (eye == EyeSight.UP)
+                {
+                    transform.Rotate(0f, 180f, 0f, Space.World);
 
-				eye = EyeSight.DOWN;
-				
-			}
-			//horizontal = !horizontal;
-			//eye = EyeSight.DOWN;
-			gameObject.GetComponent <BoxCollider> ().enabled = false;
-			gType = GridType.HOLE;
+                    eye = EyeSight.DOWN;
+
+                }
+                //horizontal = !horizontal;
+                //eye = EyeSight.DOWN;
+                gameObject.GetComponent<BoxCollider>().enabled = false;
+                gType = GridType.HOLE;
 
 
-			break;
+                break;
 
-		case "Egg":
+            case "Egg":
 
-			Debug.Log ("It is an Egg");
-			MoveToTheGrid (posToMove);
-			hit.collider.gameObject.SetActive (false);
+                Debug.Log("It is an Egg");
+                MoveToTheGrid(posToMove);
+                hit.collider.gameObject.SetActive(false);
+                GameManager.CollectedEgg();
+                GameManager.Instance.eggCount++;
+                Destroy(hit.collider.gameObject);
+                break;
 
-			break;
 
-	
-		default:
+            case "Checkpoint":
+            case "checkpoint":
+                MoveToTheGrid(posToMove);
+                break;
+            default:
 
-			break;
+                break;
 
-		}
+        }
 	}
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.tag);
+        switch(other.tag)
+        {
+            case "Wave":
+            case "wave":
+                Died();
+                break;
+            case "checkpoint":
+            case "Checkpoint":
+                GameManager.Instance.UpdateCheckpoint(other.transform);
+                break;
+        }
+    }
+
+
+    private void Died()
+    {
+        Debug.Log("died");
+
+        //add delay
+        GameManager.Instance.OnDeath();
+    }
 }

@@ -13,6 +13,8 @@ TagManager:
   - Hole
   - Egg
   - Ghost
+  - Checkpoint
+  - Wave
   layers:
   - Default
   - TransparentFX

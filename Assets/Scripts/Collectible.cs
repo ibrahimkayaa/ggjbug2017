@@ -15,7 +15,6 @@ public class Collectible : MonoBehaviour {
 	}
 
 	void OnDisable(){
-		GameManager.Instance.eggCount++;
-		Destroy (gameObject);
+		
 	}
 }
