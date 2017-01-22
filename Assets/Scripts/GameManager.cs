@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour {
         //delayed teleport/move to checkpoint
 
         PlayerCharacter.ForceMove(_latestCheckpoint.position);
-
+        PlayerCharacter.died = false;
     }
 
     public static void CollectedEgg()

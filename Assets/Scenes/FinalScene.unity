@@ -7706,6 +7706,11 @@ Prefab:
       propertyPath: _latestCheckpoint
       value: 
       objectReference: {fileID: 531922627}
+    - target: {fileID: 114570199912682150, guid: 1d830ed75d64d43faafa1c29128ee2f3,
+        type: 2}
+      propertyPath: m_Text
+      value: Oh Crab!
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d830ed75d64d43faafa1c29128ee2f3, type: 2}
   m_IsPrefabParent: 0
@@ -9195,6 +9200,74 @@ Transform:
   m_PrefabParentObject: {fileID: 4289208534138594, guid: 525abc176df587243807c3e3618088f0,
     type: 2}
   m_PrefabInternal: {fileID: 769901288}
+--- !u!1 &771428559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 771428560}
+  - component: {fileID: 771428562}
+  - component: {fileID: 771428561}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &771428560
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 771428559}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.7681166, y: 1.7681172, z: 1.7681172}
+  m_Children: []
+  m_Father: {fileID: 786149819}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -100, y: 75}
+  m_SizeDelta: {x: 68.6, y: 47.2}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &771428561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 771428559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: df80a8a2b53426a42840c9ffb55864c3, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &771428562
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 771428559}
 --- !u!1001 &772138755
 Prefab:
   m_ObjectHideFlags: 0
@@ -9337,6 +9410,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c7a54086fc354143899906359b824d6, type: 2}
   m_IsPrefabParent: 0
+--- !u!224 &786149819 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224902707374495136, guid: 1d830ed75d64d43faafa1c29128ee2f3,
+    type: 2}
+  m_PrefabInternal: {fileID: 635251625}
 --- !u!4 &788912668 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4486693848189614, guid: b1ef8452424414143a814477843667d1,
@@ -14501,7 +14579,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4742141129092622, guid: afc1251d603004b30ac19a6fae597f17, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: afc1251d603004b30ac19a6fae597f17, type: 2}
@@ -15442,6 +15520,10 @@ Prefab:
     - target: {fileID: 4936135003379118, guid: f82d876ee6a9b42b193dcf52ad3a855f, type: 2}
       propertyPath: m_RootOrder
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849444738591204, guid: f82d876ee6a9b42b193dcf52ad3a855f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f82d876ee6a9b42b193dcf52ad3a855f, type: 2}

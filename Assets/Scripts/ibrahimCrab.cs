@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ibrahimCrab : MonoBehaviour {
 
-	//public variables
-	public float speed;
-	public bool normalized;
+    //public variables
+    public float speed;
+    public bool normalized;
 
     public AudioSource AS;
 
@@ -21,49 +21,50 @@ public class ibrahimCrab : MonoBehaviour {
     //Private Variables
     [SerializeField]
     private Animator _animator;
-	private float horizontalVel;
-	private float verticalVel;
-	private Rigidbody rb;
-	private Transform tr;
-	private Vector3 pos;
-	bool horizontal;
-	private Vector3 posToCheck;
+    private float horizontalVel;
+    private float verticalVel;
+    private Rigidbody rb;
+    private Transform tr;
+    private Vector3 pos;
+    bool horizontal;
+    private Vector3 posToCheck;
     private int inputBlocked = 0;
+    public bool died;
 
-	public enum EyeSight{
-		DOWN,
-		RIGHT,
-		UP,
-		LEFT
-	}
+    public enum EyeSight {
+        DOWN,
+        RIGHT,
+        UP,
+        LEFT
+    }
 
-	public enum GridType{
-		HOLE,
-		OTHER,
+    public enum GridType {
+        HOLE,
+        OTHER,
 
-	}
+    }
 
-	private EyeSight eye;
-	private GridType gType;
+    private EyeSight eye;
+    private GridType gType;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start() {
         if (_animator == null) Debug.LogError("animator attachle");
-	
-		horizontal = true;
-		rb = GetComponent <Rigidbody> ();
-		tr = transform;
-		pos = transform.position;
-		eye = EyeSight.DOWN;
-		gType = GridType.OTHER;
+
+        horizontal = true;
+        rb = GetComponent<Rigidbody>();
+        tr = transform;
+        pos = transform.position;
+        eye = EyeSight.DOWN;
+        gType = GridType.OTHER;
 
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
 
-        if (inputBlocked>0) return;
+    // Update is called once per frame
+    void Update() {
+
+        if (inputBlocked > 0) return;
 
         if (Input.GetButtonDown("Backward"))
         {
@@ -182,13 +183,13 @@ public class ibrahimCrab : MonoBehaviour {
             {
 
                 //Debug.Log("Nothing");
-                MoveToTheGrid(posToCheck);                
+                MoveToTheGrid(posToCheck);
                 //transform.position = new Vector3 (Mathf.Clamp (posToCheck.x,-4f,120f), transform.position.y, Mathf.Clamp ( posToCheck.z, -3f,2f));
 
             }
         }
 
-		/*if(gType != GridType.HOLE){
+        /*if(gType != GridType.HOLE){
 
 
 			Turn ();
@@ -199,10 +200,10 @@ public class ibrahimCrab : MonoBehaviour {
 			
 		}*/
 
-		Turn ();
+        Turn();
 
 
-	}
+    }
 
     public void ForceMove(Vector3 pos)
     {
@@ -219,73 +220,72 @@ public class ibrahimCrab : MonoBehaviour {
 
     }
 
-	void Turn(){
+    void Turn() {
 
-		if (Input.GetButtonDown ("TurnLeft")) {
+        if (Input.GetButtonDown("TurnLeft")) {
 
-			transform.Rotate (0f,-90f,0f,Space.World);
-			horizontal = !horizontal;
+            transform.Rotate(0f, -90f, 0f, Space.World);
+            horizontal = !horizontal;
 
-			if(eye == EyeSight.DOWN){
-				eye = EyeSight.LEFT;
-			}else if(eye == EyeSight.LEFT){
-				eye = EyeSight.UP;
-			}else if(eye == EyeSight.UP){
-				eye = EyeSight.RIGHT;
-			}else if( eye == EyeSight.RIGHT){
-				eye = EyeSight.DOWN;
-			}
+            if (eye == EyeSight.DOWN) {
+                eye = EyeSight.LEFT;
+            } else if (eye == EyeSight.LEFT) {
+                eye = EyeSight.UP;
+            } else if (eye == EyeSight.UP) {
+                eye = EyeSight.RIGHT;
+            } else if (eye == EyeSight.RIGHT) {
+                eye = EyeSight.DOWN;
+            }
 
-			//Debug.Log (eye);
+            //Debug.Log (eye);
 
-		}else if(Input.GetButtonDown ("TurnRight")){
+        } else if (Input.GetButtonDown("TurnRight")) {
 
-			transform.Rotate (0f,90f,0f,Space.World);
-			horizontal = !horizontal;
+            transform.Rotate(0f, 90f, 0f, Space.World);
+            horizontal = !horizontal;
 
-			if(eye == EyeSight.DOWN){
-				eye = EyeSight.RIGHT;
-			}else if(eye == EyeSight.RIGHT){
-				eye = EyeSight.UP;
-			}else if(eye == EyeSight.UP){
-				eye = EyeSight.LEFT;
-			}else if( eye == EyeSight.LEFT){
-				eye = EyeSight.DOWN;
-			}
-			Debug.Log (eye);
+            if (eye == EyeSight.DOWN) {
+                eye = EyeSight.RIGHT;
+            } else if (eye == EyeSight.RIGHT) {
+                eye = EyeSight.UP;
+            } else if (eye == EyeSight.UP) {
+                eye = EyeSight.LEFT;
+            } else if (eye == EyeSight.LEFT) {
+                eye = EyeSight.DOWN;
+            }
+            Debug.Log(eye);
 
-		}
-	}
+        }
+    }
 
-	void MoveToTheGrid(Vector3 posToMove){
+    void MoveToTheGrid(Vector3 posToMove) {
 
-		if(gType == GridType.HOLE){
-			gType = GridType.OTHER;
-			gameObject.GetComponent <BoxCollider>().enabled = true;
-		}
+        if (gType == GridType.HOLE) {
+            gType = GridType.OTHER;
+            gameObject.GetComponent<BoxCollider>().enabled = true;
+        }
         else _animator.ResetTrigger("cower");
         _animator.SetTrigger("bombo");
         //transform.position = new Vector3 (Mathf.Clamp (posToMove.x,-4f,120f), transform.position.y, Mathf.Clamp ( posToMove.z, -3f,2f));
         StartCoroutine(MoveTowards(posToMove));
-	}
+    }
 
     IEnumerator MoveTowards(Vector3 posToMove)
     {
-        //disable inputs
         inputBlocked++;
         Vector3 clampedPos = new Vector3(Mathf.Clamp(posToMove.x, -4f, 120f), transform.position.y, Mathf.Clamp(posToMove.z, -3f, 2f));
         Vector3 direction = (clampedPos - transform.position ).normalized;
         //Debug.DrawLine(transform.position, clampedPos, Color.red, 2f);
         //Debug.Log(Vector3.Distance(transform.position, clampedPos));
-        while (Vector3.Distance(transform.position, clampedPos) > .1f)
+        while (Vector3.Distance(transform.position, clampedPos) > .1f && !died)
         {
             //Debug.Log(Vector3.Distance(transform.position, clampedPos));
             Vector3.Distance(transform.position, clampedPos);            
-            transform.position = (direction*Time.deltaTime * 2f + transform.position);
+            
+            transform.position = (direction*Time.deltaTime * 3f + transform.position);
             yield return new WaitForEndOfFrame();
         }
         transform.position = clampedPos;
-        //enable inputs
         inputBlocked--;
     }
 
@@ -303,13 +303,9 @@ public class ibrahimCrab : MonoBehaviour {
 
                 Debug.Log("It is a hole");
                 MoveToTheGrid(posToMove);
-                _animator.SetTrigger("cower");
-                StartCoroutine(DelayedInputResume());                
+                _animator.SetTrigger("cower");                 
                 gameObject.GetComponent<BoxCollider>().enabled = false;
-                gType = GridType.HOLE;
-                
-
-
+                gType = GridType.HOLE;                
                 break;
 
             case "Egg":                
@@ -362,8 +358,11 @@ public class ibrahimCrab : MonoBehaviour {
     private void Died()
     {
         Debug.Log("died");
-        StopCoroutine("MoveTowards");
+        died = true;
+        
+        StopAllCoroutines();
         //add delay
+        inputBlocked = 0;
         GameManager.Instance.OnDeath();
     }
 }
