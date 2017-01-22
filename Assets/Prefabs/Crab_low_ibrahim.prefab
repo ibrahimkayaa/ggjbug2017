@@ -236,6 +236,7 @@ GameObject:
   - component: {fileID: 114826751702427072}
   - component: {fileID: 54557792947670016}
   - component: {fileID: 114548023554335030}
+  - component: {fileID: 95196605926372666}
   m_Layer: 0
   m_Name: Crab_low_ibrahim
   m_TagString: Player
@@ -876,6 +877,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.8, z: 0.8}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &95196605926372666
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1849444738591204}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6186eaa0a7456426ea4aea6cf34171c9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114548023554335030
 MonoBehaviour:
   m_ObjectHideFlags: 1
