@@ -8,6 +8,15 @@ public class ibrahimCrab : MonoBehaviour {
 	public float speed;
 	public bool normalized;
 
+    public AudioSource AS;
+
+    public AudioClip BottleHit;
+    public AudioClip EggPickup;
+    public AudioClip SandWalk;
+    public AudioClip StoneObs;
+    public AudioClip WoodObs;
+
+
 
     //Private Variables
     [SerializeField]
@@ -19,6 +28,7 @@ public class ibrahimCrab : MonoBehaviour {
 	private Vector3 pos;
 	bool horizontal;
 	private Vector3 posToCheck;
+    private int inputBlocked = 0;
 
 	public enum EyeSight{
 		DOWN,
@@ -53,7 +63,7 @@ public class ibrahimCrab : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
+        if (inputBlocked>0) return;
 
         if (Input.GetButtonDown("Backward"))
         {
@@ -93,7 +103,7 @@ public class ibrahimCrab : MonoBehaviour {
                 if (hitInfo.collider.GetComponent<BoxCollider>())
                 {
 
-                    Debug.Log(hitInfo.collider.tag);
+                    //Debug.Log(hitInfo.collider.tag);
                     CheckColliderTags(hitInfo, posToCheck);
 
                 }
@@ -156,7 +166,7 @@ public class ibrahimCrab : MonoBehaviour {
                 {
 
 
-                    Debug.Log(hitInfo.collider.tag);
+                    //Debug.Log(hitInfo.collider.tag);
                     CheckColliderTags(hitInfo, posToCheck);
 
 
@@ -172,7 +182,7 @@ public class ibrahimCrab : MonoBehaviour {
             {
 
                 //Debug.Log("Nothing");
-                MoveToTheGrid(posToCheck);
+                MoveToTheGrid(posToCheck);                
                 //transform.position = new Vector3 (Mathf.Clamp (posToCheck.x,-4f,120f), transform.position.y, Mathf.Clamp ( posToCheck.z, -3f,2f));
 
             }
@@ -196,7 +206,17 @@ public class ibrahimCrab : MonoBehaviour {
 
     public void ForceMove(Vector3 pos)
     {
-        MoveToTheGrid(pos);
+        //MoveToTheGrid(pos);
+        StopCoroutine("MoveTowards");
+        transform.position = pos;
+    }
+
+    IEnumerator DelayedInputResume()
+    {
+        inputBlocked++;
+        yield return new WaitForSeconds(0.3f);
+        inputBlocked--;
+
     }
 
 	void Turn(){
@@ -216,7 +236,7 @@ public class ibrahimCrab : MonoBehaviour {
 				eye = EyeSight.DOWN;
 			}
 
-			Debug.Log (eye);
+			//Debug.Log (eye);
 
 		}else if(Input.GetButtonDown ("TurnRight")){
 
@@ -243,9 +263,31 @@ public class ibrahimCrab : MonoBehaviour {
 			gType = GridType.OTHER;
 			gameObject.GetComponent <BoxCollider>().enabled = true;
 		}
-
-		transform.position = new Vector3 (Mathf.Clamp (posToMove.x,-4f,120f), transform.position.y, Mathf.Clamp ( posToMove.z, -3f,2f));
+        else _animator.ResetTrigger("cower");
+        _animator.SetTrigger("bombo");
+        //transform.position = new Vector3 (Mathf.Clamp (posToMove.x,-4f,120f), transform.position.y, Mathf.Clamp ( posToMove.z, -3f,2f));
+        StartCoroutine(MoveTowards(posToMove));
 	}
+
+    IEnumerator MoveTowards(Vector3 posToMove)
+    {
+        //disable inputs
+        inputBlocked++;
+        Vector3 clampedPos = new Vector3(Mathf.Clamp(posToMove.x, -4f, 120f), transform.position.y, Mathf.Clamp(posToMove.z, -3f, 2f));
+        Vector3 direction = (clampedPos - transform.position ).normalized;
+        //Debug.DrawLine(transform.position, clampedPos, Color.red, 2f);
+        //Debug.Log(Vector3.Distance(transform.position, clampedPos));
+        while (Vector3.Distance(transform.position, clampedPos) > .1f)
+        {
+            //Debug.Log(Vector3.Distance(transform.position, clampedPos));
+            Vector3.Distance(transform.position, clampedPos);            
+            transform.position = (direction*Time.deltaTime * 2f + transform.position);
+            yield return new WaitForEndOfFrame();
+        }
+        transform.position = clampedPos;
+        //enable inputs
+        inputBlocked--;
+    }
 
 
 	void CheckColliderTags(RaycastHit hit, Vector3 posToMove){
@@ -255,31 +297,14 @@ public class ibrahimCrab : MonoBehaviour {
             case "Trap":
 
                 Debug.Log("It is a trap");
-                Died();
-
+                Died();                
                 break;
             case "Hole":
 
                 Debug.Log("It is a hole");
                 MoveToTheGrid(posToMove);
-
-                /*(eye != EyeSight.DOWN && (eye == EyeSight.LEFT || eye == EyeSight.RIGHT))
-                {
-
-                    transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                    horizontal = !horizontal;
-                    eye = EyeSight.DOWN;
-
-                }
-                else if (eye == EyeSight.UP)
-                {
-                    transform.Rotate(0f, 180f, 0f, Space.World);
-
-                    eye = EyeSight.DOWN;
-
-                }*/
-                //horizontal = !horizontal;
-                //eye = EyeSight.DOWN;
+                _animator.SetTrigger("cower");
+                StartCoroutine(DelayedInputResume());                
                 gameObject.GetComponent<BoxCollider>().enabled = false;
                 gType = GridType.HOLE;
                 
@@ -287,23 +312,31 @@ public class ibrahimCrab : MonoBehaviour {
 
                 break;
 
-            case "Egg":
-
+            case "Egg":                
                 Debug.Log("It is an Egg");
                 MoveToTheGrid(posToMove);
                 hit.collider.gameObject.SetActive(false);
-                GameManager.CollectedEgg();
                 GameManager.Instance.eggCount++;
+                GameManager.CollectedEgg();
                 Destroy(hit.collider.gameObject);
+                AS.PlayOneShot(EggPickup);
                 break;
 
 
             case "Checkpoint":
             case "checkpoint":
+                Debug.Log("Checkpoint saved");
                 MoveToTheGrid(posToMove);
+                
+                break;
+            case "Rock":
+                AS.PlayOneShot(StoneObs);
+                break;
+            case "Ship":
+                AS.PlayOneShot(WoodObs);
                 break;
             default:
-
+                
                 break;
 
         }
