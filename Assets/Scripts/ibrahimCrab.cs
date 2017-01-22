@@ -9,7 +9,9 @@ public class ibrahimCrab : MonoBehaviour {
 	public bool normalized;
 
 
-	//Private Variables
+    //Private Variables
+    [SerializeField]
+    private Animator _animator;
 	private float horizontalVel;
 	private float verticalVel;
 	private Rigidbody rb;
@@ -36,7 +38,7 @@ public class ibrahimCrab : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+        if (_animator == null) Debug.LogError("animator attachle");
 	
 		horizontal = true;
 		rb = GetComponent <Rigidbody> ();
