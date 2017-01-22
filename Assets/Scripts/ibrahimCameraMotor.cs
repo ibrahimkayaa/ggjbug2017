@@ -18,7 +18,7 @@ public class ibrahimCameraMotor : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		transform.position = Vector3.Slerp (new Vector3(transform.position.x , transform.position.y, transform.position.z ), new Vector3(target.transform.position.x + offSet.x, target.transform.position.y + offSet.y,transform.position.z), Time.deltaTime * 1f);
+		transform.position = Vector3.Lerp (new Vector3(transform.position.x , transform.position.y, transform.position.z ), new Vector3(target.transform.position.x + offSet.x, target.transform.position.y + offSet.y,transform.position.z), Time.deltaTime * 1f);
 		
 	}
 }

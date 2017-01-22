@@ -10,7 +10,14 @@ public class GameManager : MonoBehaviour {
 	//Public variables
 	public Text eggText;
     public ibrahimCrab PlayerCharacter;
+	public GameObject MainMenu;
+	public GameObject OptionsMenu;
+	public GameObject CreditsMenu;
+	public GameObject PauseButton;
+	public GameObject PausedMenu;
+	public GameObject hollyCrab;
 
+	public bool isGlobal;
 	//private Variables
 	private int EggeCount;
     [SerializeField] private Transform _latestCheckpoint;
@@ -42,12 +49,15 @@ public class GameManager : MonoBehaviour {
 		}else{
 
 			Instance = this;
+
 		}
 
 		DontDestroyOnLoad (gameObject);
 	}
 
 	void Start () {
+
+		isGlobal = true;
 		
 	}
 	
@@ -77,4 +87,68 @@ public class GameManager : MonoBehaviour {
     {
         Instance.eggText.text = Instance.EggeCount.ToString();
     }
+
+	public void GoToOptionsMenu(){
+
+		MainMenu.SetActive (false);
+		OptionsMenu.SetActive (true);
+		CreditsMenu.SetActive (false);
+	}
+	public void GoToCreditsMenu(){
+		MainMenu.SetActive (false);
+		OptionsMenu.SetActive (false);
+		CreditsMenu.SetActive (true);
+	}
+
+	public void BackToMainMenu(){
+		MainMenu.SetActive (true);
+		OptionsMenu.SetActive (false);
+		CreditsMenu.SetActive (false);
+	}
+
+	public void StartGame(){
+		MainMenu.SetActive (false);
+		OptionsMenu.SetActive (false);
+		CreditsMenu.SetActive (false);
+		hollyCrab.SetActive (true);
+		PauseButton.SetActive (true);
+	}
+
+	public void PauseGame(){
+
+		Time.timeScale = 0f;
+		PausedMenu.SetActive (true);
+		PauseButton.SetActive (false);
+		hollyCrab.GetComponent <ibrahimCrab>().enabled = false;
+
+	}
+
+	public void ResumeGame(){
+		Time.timeScale = 1f;
+		PausedMenu.SetActive (false);
+		PauseButton.SetActive (true);
+		hollyCrab.GetComponent <ibrahimCrab>().enabled = true;
+
+	}
+
+	public void ToggleWorldLocal(){
+
+		if(isGlobal){
+			PlayerCharacter.normalized = true;
+			isGlobal = false;
+
+			Debug.Log ("Normalized");
+
+		}else if(!isGlobal){
+			PlayerCharacter.normalized = false;
+			isGlobal = true;
+
+			Debug.Log ("Unnormalized");
+		}
+	}
+
+	public void ExitGame(){
+
+		Application.Quit ();
+	}
 }
