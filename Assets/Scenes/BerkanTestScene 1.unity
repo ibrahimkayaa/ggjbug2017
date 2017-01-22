@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.4964127, b: 0.57481724, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -3027,28 +3027,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4289208534138594, guid: 525abc176df587243807c3e3618088f0,
     type: 2}
   m_PrefabInternal: {fileID: 275030625}
---- !u!1 &275726518 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1213138834633536, guid: f82d876ee6a9b42b193dcf52ad3a855f,
-    type: 2}
-  m_PrefabInternal: {fileID: 1300598084}
---- !u!95 &275726520
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 275726518}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6186eaa0a7456426ea4aea6cf34171c9, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!4 &278632834 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4580342313545110, guid: a15ede81cda5d4220a72705cbb7ac22d,
@@ -14446,19 +14424,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 114548023554335030, guid: f82d876ee6a9b42b193dcf52ad3a855f,
-        type: 2}
-      propertyPath: normalized
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 95196605926372666, guid: f82d876ee6a9b42b193dcf52ad3a855f,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 54557792947670016, guid: f82d876ee6a9b42b193dcf52ad3a855f, type: 2}
-    - {fileID: 95196605926372666, guid: f82d876ee6a9b42b193dcf52ad3a855f, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f82d876ee6a9b42b193dcf52ad3a855f, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1306500008 stripped
