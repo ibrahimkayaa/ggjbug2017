@@ -362,7 +362,7 @@ public class ibrahimCrab : MonoBehaviour {
     private void Died()
     {
         Debug.Log("died");
-
+        StopCoroutine("MoveTowards");
         //add delay
         GameManager.Instance.OnDeath();
     }
