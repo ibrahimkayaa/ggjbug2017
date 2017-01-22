@@ -51,6 +51,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4137502074390982}
+  - component: {fileID: 95878865585020586}
   m_Layer: 0
   m_Name: crab_last_1
   m_TagString: Untagged
@@ -234,9 +235,7 @@ GameObject:
   - component: {fileID: 4936135003379118}
   - component: {fileID: 65881439245529966}
   - component: {fileID: 114826751702427072}
-  - component: {fileID: 54557792947670016}
   - component: {fileID: 114548023554335030}
-  - component: {fileID: 95196605926372666}
   m_Layer: 0
   m_Name: Crab_low_ibrahim
   m_TagString: Player
@@ -850,21 +849,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1984216717160106}
   m_Mesh: {fileID: 4300002, guid: 6fbf2c8aadfde044eb6948a6ac9cc0fb, type: 3}
---- !u!54 &54557792947670016
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1849444738591204}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!65 &65881439245529966
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -877,13 +861,13 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.8, z: 0.8}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &95196605926372666
+--- !u!95 &95878865585020586
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1849444738591204}
+  m_GameObject: {fileID: 1213138834633536}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 6186eaa0a7456426ea4aea6cf34171c9, type: 2}
@@ -906,7 +890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  normalized: 0
+  normalized: 1
 --- !u!114 &114826751702427072
 MonoBehaviour:
   m_ObjectHideFlags: 1
