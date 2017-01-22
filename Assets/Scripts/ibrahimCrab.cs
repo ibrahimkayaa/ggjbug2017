@@ -176,7 +176,7 @@ public class ibrahimCrab : MonoBehaviour {
             }
         }
 
-		if(gType != GridType.HOLE){
+		/*if(gType != GridType.HOLE){
 
 
 			Turn ();
@@ -185,9 +185,9 @@ public class ibrahimCrab : MonoBehaviour {
 			//horizontal = !horizontal;
 			Turn ();
 			
-		}
+		}*/
 
-		//Turn ();
+		Turn ();
 
 
 	}
@@ -261,7 +261,7 @@ public class ibrahimCrab : MonoBehaviour {
                 Debug.Log("It is a hole");
                 MoveToTheGrid(posToMove);
 
-                if (eye != EyeSight.DOWN && (eye == EyeSight.LEFT || eye == EyeSight.RIGHT))
+                /*(eye != EyeSight.DOWN && (eye == EyeSight.LEFT || eye == EyeSight.RIGHT))
                 {
 
                     transform.rotation = Quaternion.Euler(0f, 0f, 0f);
@@ -275,11 +275,12 @@ public class ibrahimCrab : MonoBehaviour {
 
                     eye = EyeSight.DOWN;
 
-                }
+                }*/
                 //horizontal = !horizontal;
                 //eye = EyeSight.DOWN;
                 gameObject.GetComponent<BoxCollider>().enabled = false;
                 gType = GridType.HOLE;
+                
 
 
                 break;
