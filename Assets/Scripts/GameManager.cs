@@ -18,10 +18,14 @@ public class GameManager : MonoBehaviour {
 	public GameObject hollyCrab;
 
 	public bool isGlobal;
+
 	//private Variables
 	private int EggeCount;
     [SerializeField] private Transform _latestCheckpoint;
 
+	private bool isMute;
+	private List<GameObject> eggsList = new List<GameObject>();
+	private Transform startPos;
 
 	public int eggCount {
 
@@ -58,6 +62,15 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 
 		isGlobal = true;
+		isMute = false;
+		startPos = _latestCheckpoint;
+		for(int i = 0 ; i < GameObject.FindGameObjectsWithTag ("Egg").Length ; i++){
+
+			GameObject tempObj = GameObject.FindGameObjectsWithTag ("Egg").GetValue (i) as GameObject;
+
+			eggsList.Add (tempObj);
+		}
+
 		
 	}
 	
@@ -150,5 +163,39 @@ public class GameManager : MonoBehaviour {
 	public void ExitGame(){
 
 		Application.Quit ();
+	}
+
+	public void GoToMainMenu(){
+
+		Time.timeScale = 1f;
+		PausedMenu.SetActive (false);
+		MainMenu.SetActive (true);
+		Instance.EggeCount = 0;
+		CollectedEgg ();
+		ResetEggs ();
+		hollyCrab.GetComponent <ibrahimCrab>().enabled = true;
+		hollyCrab.SetActive (false);
+		PlayerCharacter.ForceMove(startPos.position);
+
+
+	}
+
+	void ResetEggs(){
+
+		for(int i = 0 ; i < eggsList.Count ; i ++){
+
+			eggsList[i].SetActive (true);
+		}
+	}
+
+	public void Mute(){
+
+		if(!isMute){
+			isMute = true;
+			AudioListener.pause = true;
+		}else if(isMute){
+			isMute = false;
+			AudioListener.pause = false;
+		}
 	}
 }

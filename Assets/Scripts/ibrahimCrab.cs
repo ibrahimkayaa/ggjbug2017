@@ -7,6 +7,7 @@ public class ibrahimCrab : MonoBehaviour {
     //public variables
     public float speed;
     public bool normalized;
+	public float inputDelayTime;
 
     public AudioSource AS;
 
@@ -30,6 +31,7 @@ public class ibrahimCrab : MonoBehaviour {
     private Vector3 posToCheck;
     private int inputBlocked = 0;
     public bool died;
+
 
     public enum EyeSight {
         DOWN,
@@ -57,8 +59,7 @@ public class ibrahimCrab : MonoBehaviour {
         pos = transform.position;
         eye = EyeSight.DOWN;
         gType = GridType.OTHER;
-
-
+	
     }
 
     // Update is called once per frame
@@ -66,7 +67,7 @@ public class ibrahimCrab : MonoBehaviour {
 
         if (inputBlocked > 0) return;
 
-        if (Input.GetButtonDown("Backward"))
+		if (Input.GetButtonDown("Backward") || Input.GetButtonDown ("LeftKey"))
         {
             //Debug.Log ("Crab position : " +transform.position);
 
@@ -125,7 +126,7 @@ public class ibrahimCrab : MonoBehaviour {
             //Debug.Log ("out out amk");
 
         }
-        else if (Input.GetButtonDown("Forward"))
+		else if (Input.GetButtonDown("Forward") || Input.GetButtonDown ("RightKey"))
         {
 
             //Debug.Log("Crab position : " + transform.position);
@@ -222,7 +223,7 @@ public class ibrahimCrab : MonoBehaviour {
 
     void Turn() {
 
-        if (Input.GetButtonDown("TurnLeft")) {
+		if (Input.GetButtonDown("TurnLeft") || Input.GetButtonDown ("UpKey")) {
 
             transform.Rotate(0f, -90f, 0f, Space.World);
             horizontal = !horizontal;
@@ -239,7 +240,7 @@ public class ibrahimCrab : MonoBehaviour {
 
             //Debug.Log (eye);
 
-        } else if (Input.GetButtonDown("TurnRight")) {
+		} else if (Input.GetButtonDown("TurnRight") || Input.GetButtonDown ("DownKey")) {
 
             transform.Rotate(0f, 90f, 0f, Space.World);
             horizontal = !horizontal;
@@ -314,7 +315,8 @@ public class ibrahimCrab : MonoBehaviour {
                 hit.collider.gameObject.SetActive(false);
                 GameManager.Instance.eggCount++;
                 GameManager.CollectedEgg();
-                Destroy(hit.collider.gameObject);
+                //Destroy(hit.collider.gameObject);
+			    hit.collider.gameObject.SetActive (false);
                 AS.PlayOneShot(EggPickup);
                 break;
 
@@ -362,7 +364,14 @@ public class ibrahimCrab : MonoBehaviour {
         
         StopAllCoroutines();
         //add delay
-        inputBlocked = 0;
+        inputBlocked = 1;
         GameManager.Instance.OnDeath();
+		StartCoroutine (ResetInputBlocked ());
     }
+
+	IEnumerator ResetInputBlocked(){
+
+		yield return new WaitForSeconds (inputDelayTime);
+		inputBlocked = 0;
+	}
 }
