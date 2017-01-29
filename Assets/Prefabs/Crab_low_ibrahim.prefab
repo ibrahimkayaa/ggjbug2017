@@ -244,7 +244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1984216717160106
 GameObject:
   m_ObjectHideFlags: 1
@@ -448,7 +448,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1849444738591204}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 1.444, z: -2}
+  m_LocalPosition: {x: 0, y: 1.494, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4449612518926446}
@@ -989,6 +989,7 @@ MonoBehaviour:
   speed: 5
   normalized: 1
   inputDelayTime: 2
+  twoDirection: 1
   AS: {fileID: 82476244199572520}
   BottleHit: {fileID: 8300000, guid: 8922fc399869a5e49bae3ebefb5de5d7, type: 3}
   EggPickup: {fileID: 8300000, guid: 91902b5447c9f5c468a02cf47e25ec9c, type: 3}

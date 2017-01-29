@@ -15,6 +15,7 @@ TagManager:
   - Ghost
   - Checkpoint
   - Wave
+  - MsCrable
   layers:
   - Default
   - TransparentFX

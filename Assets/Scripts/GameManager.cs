@@ -16,16 +16,22 @@ public class GameManager : MonoBehaviour {
 	public GameObject PauseButton;
 	public GameObject PausedMenu;
 	public GameObject hollyCrab;
+	public GameObject eggHUD;
+	public GameObject lifeHUD;
+	public GameObject[] crableHealthIconArray;
 
 	public bool isGlobal;
 
 	//private Variables
 	private int EggeCount;
+	[HideInInspector]public int CrableHealth;
     [SerializeField] private Transform _latestCheckpoint;
 
 	private bool isMute;
-	private List<GameObject> eggsList = new List<GameObject>();
+	[SerializeField]
+	public List<GameObject> eggsList = new List<GameObject>();
 	private Transform startPos;
+
 
 	public int eggCount {
 
@@ -64,6 +70,8 @@ public class GameManager : MonoBehaviour {
 		isGlobal = true;
 		isMute = false;
 		startPos = _latestCheckpoint;
+		CrableHealth = 5;
+	
 		for(int i = 0 ; i < GameObject.FindGameObjectsWithTag ("Egg").Length ; i++){
 
 			GameObject tempObj = GameObject.FindGameObjectsWithTag ("Egg").GetValue (i) as GameObject;
@@ -78,6 +86,7 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 
 		//Debug.Log ("Eggs : " + EggeCount);
+		SubstractHealth ();
 		
 	}
 
@@ -125,6 +134,8 @@ public class GameManager : MonoBehaviour {
 		CreditsMenu.SetActive (false);
 		hollyCrab.SetActive (true);
 		PauseButton.SetActive (true);
+		eggHUD.SetActive (true);
+		lifeHUD.SetActive (true);
 	}
 
 	public void PauseGame(){
@@ -165,26 +176,82 @@ public class GameManager : MonoBehaviour {
 		Application.Quit ();
 	}
 
-	public void GoToMainMenu(){
+	public void GoToMainMenu(bool t){
 
 		Time.timeScale = 1f;
 		PausedMenu.SetActive (false);
 		MainMenu.SetActive (true);
 		Instance.EggeCount = 0;
+		eggHUD.SetActive (false);
+		lifeHUD.SetActive (false);
 		CollectedEgg ();
 		ResetEggs ();
 		hollyCrab.GetComponent <ibrahimCrab>().enabled = true;
-		hollyCrab.SetActive (false);
+		hollyCrab.SetActive (t);
 		PlayerCharacter.ForceMove(startPos.position);
 
 
 	}
+
+	public void RestartGame(){
+
+		Time.timeScale = 1f;
+		PausedMenu.SetActive (false);
+		Instance.EggeCount = 0;
+		Instance.CrableHealth = 5;
+		CollectedEgg ();
+		ResetEggs ();
+		PauseButton.SetActive (true);
+		PlayerCharacter.ForceMove (startPos.position);
+		StartCoroutine (LateEnabled ());
+	}
+
+	IEnumerator LateEnabled(){
+
+		yield return new WaitForSeconds (2f);
+		hollyCrab.GetComponent <ibrahimCrab>().enabled = true;
+
+	}
+
+	/*public void ResetGame(){
+
+		MainMenu.SetActive (true);
+		Instance.EggeCount = 0;
+		CollectedEgg ();
+		ResetEggs ();
+		Instance.CrableHealth = 5;
+
+	}*/
 
 	void ResetEggs(){
 
 		for(int i = 0 ; i < eggsList.Count ; i ++){
 
 			eggsList[i].SetActive (true);
+		}
+	}
+
+	public void SubstractHealth(){
+
+		Color halfColor = Color.black;
+		halfColor.a = 0.25f;
+		Color fullColor = Color.white;
+
+
+		for(int i = 0 ; i < crableHealthIconArray.Length ; i++){
+
+			if(CrableHealth > i){
+
+		
+				crableHealthIconArray [i].GetComponent <Image> ().color = fullColor;
+
+
+			}else{
+
+				crableHealthIconArray [i].GetComponent <Image> ().color = halfColor;
+				
+			}
+			
 		}
 	}
 

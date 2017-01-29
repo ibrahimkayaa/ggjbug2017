@@ -1,0 +1,117 @@
+fileFormatVersion: 2
+guid: 063c469275bdf4db1a90a2c4c47216d4
+timeCreated: 1485619754
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Misscrab_UV:crab_Misscrab_UV:left_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_Misscrab_UV:polySurface20_polySurface3
+    100004: Misscrab_UV:crab_Misscrab_UV:left_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_Misscrab_UV:polySurface20_polySurface5_Misscrab_UV:polySurface1_polySurface10
+    100006: Misscrab_UV:crab_Misscrab_UV:left_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_Misscrab_UV:polySurface20_polySurface6_polySurface5_Misscrab_UV:polySurface1
+    100008: Misscrab_UV:crab_Misscrab_UV:left_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_Misscrab_UV:polySurface20_polySurface7
+    100010: Misscrab_UV:crab_Misscrab_UV:main_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_polySurface3
+    100012: Misscrab_UV:crab_Misscrab_UV:main_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_polySurface5_Misscrab_UV:polySurface1_polySurface10
+    100014: Misscrab_UV:crab_Misscrab_UV:main_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_polySurface6_polySurface5_Misscrab_UV:polySurface1
+    100016: Misscrab_UV:crab_Misscrab_UV:main_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_polySurface7
+    400000: //RootNode
+    400002: Misscrab_UV:crab_Misscrab_UV:left_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_Misscrab_UV:polySurface20_polySurface3
+    400004: Misscrab_UV:crab_Misscrab_UV:left_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_Misscrab_UV:polySurface20_polySurface5_Misscrab_UV:polySurface1_polySurface10
+    400006: Misscrab_UV:crab_Misscrab_UV:left_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_Misscrab_UV:polySurface20_polySurface6_polySurface5_Misscrab_UV:polySurface1
+    400008: Misscrab_UV:crab_Misscrab_UV:left_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_Misscrab_UV:polySurface20_polySurface7
+    400010: Misscrab_UV:crab_Misscrab_UV:main_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_polySurface3
+    400012: Misscrab_UV:crab_Misscrab_UV:main_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_polySurface5_Misscrab_UV:polySurface1_polySurface10
+    400014: Misscrab_UV:crab_Misscrab_UV:main_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_polySurface6_polySurface5_Misscrab_UV:polySurface1
+    400016: Misscrab_UV:crab_Misscrab_UV:main_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_polySurface7
+    2300000: Misscrab_UV:crab_Misscrab_UV:left_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_Misscrab_UV:polySurface20_polySurface3
+    2300002: Misscrab_UV:crab_Misscrab_UV:left_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_Misscrab_UV:polySurface20_polySurface5_Misscrab_UV:polySurface1_polySurface10
+    2300004: Misscrab_UV:crab_Misscrab_UV:left_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_Misscrab_UV:polySurface20_polySurface6_polySurface5_Misscrab_UV:polySurface1
+    2300006: Misscrab_UV:crab_Misscrab_UV:left_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_Misscrab_UV:polySurface20_polySurface7
+    2300008: Misscrab_UV:crab_Misscrab_UV:main_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_polySurface3
+    2300010: Misscrab_UV:crab_Misscrab_UV:main_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_polySurface5_Misscrab_UV:polySurface1_polySurface10
+    2300012: Misscrab_UV:crab_Misscrab_UV:main_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_polySurface6_polySurface5_Misscrab_UV:polySurface1
+    2300014: Misscrab_UV:crab_Misscrab_UV:main_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_polySurface7
+    3300000: Misscrab_UV:crab_Misscrab_UV:left_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_Misscrab_UV:polySurface20_polySurface3
+    3300002: Misscrab_UV:crab_Misscrab_UV:left_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_Misscrab_UV:polySurface20_polySurface5_Misscrab_UV:polySurface1_polySurface10
+    3300004: Misscrab_UV:crab_Misscrab_UV:left_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_Misscrab_UV:polySurface20_polySurface6_polySurface5_Misscrab_UV:polySurface1
+    3300006: Misscrab_UV:crab_Misscrab_UV:left_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_Misscrab_UV:polySurface20_polySurface7
+    3300008: Misscrab_UV:crab_Misscrab_UV:main_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_polySurface3
+    3300010: Misscrab_UV:crab_Misscrab_UV:main_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_polySurface5_Misscrab_UV:polySurface1_polySurface10
+    3300012: Misscrab_UV:crab_Misscrab_UV:main_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_polySurface6_polySurface5_Misscrab_UV:polySurface1
+    3300014: Misscrab_UV:crab_Misscrab_UV:main_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_polySurface7
+    4300000: Misscrab_UV:crab_Misscrab_UV:left_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_Misscrab_UV:polySurface20_polySurface3
+    4300002: Misscrab_UV:crab_Misscrab_UV:left_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_Misscrab_UV:polySurface20_polySurface5_Misscrab_UV:polySurface1_polySurface10
+    4300004: Misscrab_UV:crab_Misscrab_UV:left_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_Misscrab_UV:polySurface20_polySurface6_polySurface5_Misscrab_UV:polySurface1
+    4300006: Misscrab_UV:crab_Misscrab_UV:left_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_Misscrab_UV:polySurface20_polySurface7
+    4300008: Misscrab_UV:crab_Misscrab_UV:main_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_polySurface3
+    4300010: Misscrab_UV:crab_Misscrab_UV:main_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_polySurface5_Misscrab_UV:polySurface1_polySurface10
+    4300012: Misscrab_UV:crab_Misscrab_UV:main_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_polySurface6_polySurface5_Misscrab_UV:polySurface1
+    4300014: Misscrab_UV:crab_Misscrab_UV:main_Misscrab_UV:polySurface2_Misscrab_UV:polySurface3_Misscrab_UV:polySurface4_polySurface7
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

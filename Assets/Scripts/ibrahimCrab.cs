@@ -8,6 +8,7 @@ public class ibrahimCrab : MonoBehaviour {
     public float speed;
     public bool normalized;
 	public float inputDelayTime;
+	public bool twoDirection;
 
     public AudioSource AS;
 
@@ -177,8 +178,6 @@ public class ibrahimCrab : MonoBehaviour {
 
                 }
 
-
-
             }
             else
             {
@@ -225,22 +224,44 @@ public class ibrahimCrab : MonoBehaviour {
 
 		if (Input.GetButtonDown("TurnLeft") || Input.GetButtonDown ("UpKey")) {
 
-            transform.Rotate(0f, -90f, 0f, Space.World);
-            horizontal = !horizontal;
 
-            if (eye == EyeSight.DOWN) {
-                eye = EyeSight.LEFT;
-            } else if (eye == EyeSight.LEFT) {
-                eye = EyeSight.UP;
-            } else if (eye == EyeSight.UP) {
-                eye = EyeSight.RIGHT;
-            } else if (eye == EyeSight.RIGHT) {
-                eye = EyeSight.DOWN;
-            }
+			if(twoDirection){
 
+				if(horizontal){
+
+					transform.rotation = Quaternion.Euler (0f, -90f, 0f);
+					eye = EyeSight.RIGHT;
+					horizontal = false;
+
+				}else if(!horizontal){
+					transform.rotation = Quaternion.Euler (0f, 0f, 0f);
+					eye = EyeSight.DOWN;
+					
+					horizontal = true;
+				}
+
+
+			}else if(!twoDirection){
+
+				transform.Rotate(0f, -90f, 0f, Space.World);
+				horizontal = !horizontal;
+
+				if (eye == EyeSight.DOWN) {
+					eye = EyeSight.LEFT;
+				} else if (eye == EyeSight.LEFT) {
+					eye = EyeSight.UP;
+				} else if (eye == EyeSight.UP) {
+					eye = EyeSight.RIGHT;
+				} else if (eye == EyeSight.RIGHT) {
+					eye = EyeSight.DOWN;
+				}
+
+
+			}
+				
             //Debug.Log (eye);
 
-		} else if (Input.GetButtonDown("TurnRight") || Input.GetButtonDown ("DownKey")) {
+		} else if ((Input.GetButtonDown("TurnRight") || Input.GetButtonDown ("DownKey")) && !twoDirection) {
 
             transform.Rotate(0f, 90f, 0f, Space.World);
             horizontal = !horizontal;
@@ -333,11 +354,33 @@ public class ibrahimCrab : MonoBehaviour {
             case "Ship":
                 AS.PlayOneShot(WoodObs);
                 break;
+
+		case "MsCrable":
+			Debug.Log ("Askim Naber");
+
+			StartCoroutine (CheckTheEggs (posToMove));
+			break;
             default:
                 
                 break;
 
         }
+	}
+
+	IEnumerator CheckTheEggs(Vector3 pos){
+
+		MoveToTheGrid (pos);
+
+		yield return new WaitForSeconds (0.5f);
+
+		if(GameManager.Instance.eggCount >=  Mathf.RoundToInt((GameManager.Instance.eggsList.Count / 2)) ){
+
+			Debug.Log ("Ms Crable : Askim Bende seni cok seviyorum ");
+
+		}else{
+			Debug.Log ("Ms Crable : Ben artik Mr.Crooble i cok seviyorum ");
+
+		}
 	}
 
     void OnTriggerEnter(Collider other)
@@ -361,12 +404,31 @@ public class ibrahimCrab : MonoBehaviour {
     {
         Debug.Log("died");
         died = true;
-        
-        StopAllCoroutines();
+
+	
+		if(GameManager.Instance.CrableHealth > 1){
+
+			GameManager.Instance.CrableHealth--;
+			StopAllCoroutines();
+			//add delay
+			inputBlocked = 1;
+			GameManager.Instance.OnDeath();
+			StartCoroutine (ResetInputBlocked ());
+
+
+		}else if(GameManager.Instance.CrableHealth == 1){
+			GameManager.Instance.CrableHealth = 5;
+			//GameManager.Instance.ResetGame ();
+			GameManager.Instance.GoToMainMenu (false);
+			GameManager.Instance.PlayerCharacter.died = false;
+
+		}
+
+        /*StopAllCoroutines();
         //add delay
         inputBlocked = 1;
         GameManager.Instance.OnDeath();
-		StartCoroutine (ResetInputBlocked ());
+		StartCoroutine (ResetInputBlocked ());*/
     }
 
 	IEnumerator ResetInputBlocked(){
