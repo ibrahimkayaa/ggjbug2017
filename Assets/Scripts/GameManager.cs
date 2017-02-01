@@ -15,10 +15,16 @@ public class GameManager : MonoBehaviour {
 	public GameObject CreditsMenu;
 	public GameObject PauseButton;
 	public GameObject PausedMenu;
+	public GameObject howToMenu;
 	public GameObject hollyCrab;
 	public GameObject eggHUD;
 	public GameObject lifeHUD;
+	public GameObject endScene;
+	public GameObject badEndScene;
 	public GameObject[] crableHealthIconArray;
+	public AudioClip inGameAudio;
+	public AudioClip inMenuAudio;
+
 
 	public bool isGlobal;
 
@@ -31,6 +37,7 @@ public class GameManager : MonoBehaviour {
 	[SerializeField]
 	public List<GameObject> eggsList = new List<GameObject>();
 	private Transform startPos;
+	private AudioSource mainSoundSource;
 
 
 	public int eggCount {
@@ -71,6 +78,7 @@ public class GameManager : MonoBehaviour {
 		isMute = false;
 		startPos = _latestCheckpoint;
 		CrableHealth = 5;
+		mainSoundSource = GetComponent <AudioSource> ();
 	
 		for(int i = 0 ; i < GameObject.FindGameObjectsWithTag ("Egg").Length ; i++){
 
@@ -115,27 +123,43 @@ public class GameManager : MonoBehaviour {
 		MainMenu.SetActive (false);
 		OptionsMenu.SetActive (true);
 		CreditsMenu.SetActive (false);
+		howToMenu.SetActive (false);
 	}
 	public void GoToCreditsMenu(){
 		MainMenu.SetActive (false);
 		OptionsMenu.SetActive (false);
 		CreditsMenu.SetActive (true);
+		howToMenu.SetActive (false);
+	}
+
+	public void GoToHowToMenu(){
+
+		MainMenu.SetActive (false);
+		OptionsMenu.SetActive (false);
+		CreditsMenu.SetActive (false);
+		howToMenu.SetActive (true);
 	}
 
 	public void BackToMainMenu(){
 		MainMenu.SetActive (true);
 		OptionsMenu.SetActive (false);
 		CreditsMenu.SetActive (false);
+		howToMenu.SetActive (false);
 	}
 
 	public void StartGame(){
 		MainMenu.SetActive (false);
 		OptionsMenu.SetActive (false);
 		CreditsMenu.SetActive (false);
+		howToMenu.SetActive (false);
 		hollyCrab.SetActive (true);
 		PauseButton.SetActive (true);
 		eggHUD.SetActive (true);
 		lifeHUD.SetActive (true);
+		mainSoundSource.clip = inGameAudio;
+		mainSoundSource.volume = 0.35f;
+		mainSoundSource.PlayDelayed (0.3f);
+
 	}
 
 	public void PauseGame(){
@@ -176,7 +200,7 @@ public class GameManager : MonoBehaviour {
 		Application.Quit ();
 	}
 
-	public void GoToMainMenu(bool t){
+	public void GoToMainMenu(){
 
 		Time.timeScale = 1f;
 		PausedMenu.SetActive (false);
@@ -187,8 +211,11 @@ public class GameManager : MonoBehaviour {
 		CollectedEgg ();
 		ResetEggs ();
 		hollyCrab.GetComponent <ibrahimCrab>().enabled = true;
-		hollyCrab.SetActive (t);
+		hollyCrab.SetActive (false);
 		PlayerCharacter.ForceMove(startPos.position);
+		mainSoundSource.clip = inMenuAudio;
+		mainSoundSource.volume = 0.75f;
+		mainSoundSource.PlayDelayed (0.2f);
 
 
 	}
@@ -253,6 +280,22 @@ public class GameManager : MonoBehaviour {
 			}
 			
 		}
+	}
+
+	public void ShowEndScene(){
+
+		endScene.SetActive (true);
+	}
+
+	public void CloseEndScene(){
+
+		endScene.SetActive (false);
+	}
+
+	public void ShowBadEndScene(){
+		
+		badEndScene.SetActive (true);
+		
 	}
 
 	public void Mute(){

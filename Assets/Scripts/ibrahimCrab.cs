@@ -28,6 +28,7 @@ public class ibrahimCrab : MonoBehaviour {
     private Rigidbody rb;
     private Transform tr;
     private Vector3 pos;
+	public Transform rootTransform;
     bool horizontal;
     private Vector3 posToCheck;
     private int inputBlocked = 0;
@@ -44,6 +45,7 @@ public class ibrahimCrab : MonoBehaviour {
     public enum GridType {
         HOLE,
         OTHER,
+		SHIP
 
     }
 
@@ -120,6 +122,7 @@ public class ibrahimCrab : MonoBehaviour {
 
 
                 MoveToTheGrid(posToCheck);
+		
                 //transform.position = new Vector3 (Mathf.Clamp (posToCheck.x,-4f,120f) , transform.position.y, Mathf.Clamp (posToCheck.z,-3f,2f));
 
             }
@@ -184,6 +187,7 @@ public class ibrahimCrab : MonoBehaviour {
 
                 //Debug.Log("Nothing");
                 MoveToTheGrid(posToCheck);
+		
                 //transform.position = new Vector3 (Mathf.Clamp (posToCheck.x,-4f,120f), transform.position.y, Mathf.Clamp ( posToCheck.z, -3f,2f));
 
             }
@@ -201,6 +205,9 @@ public class ibrahimCrab : MonoBehaviour {
 		}*/
 
         Turn();
+
+
+
 
 
     }
@@ -282,7 +289,7 @@ public class ibrahimCrab : MonoBehaviour {
 
     void MoveToTheGrid(Vector3 posToMove) {
 
-        if (gType == GridType.HOLE) {
+		if (gType == GridType.HOLE) {
             gType = GridType.OTHER;
             gameObject.GetComponent<BoxCollider>().enabled = true;
         }
@@ -290,6 +297,9 @@ public class ibrahimCrab : MonoBehaviour {
         _animator.SetTrigger("bombo");
         //transform.position = new Vector3 (Mathf.Clamp (posToMove.x,-4f,120f), transform.position.y, Mathf.Clamp ( posToMove.z, -3f,2f));
         StartCoroutine(MoveTowards(posToMove));
+
+
+
     }
 
     IEnumerator MoveTowards(Vector3 posToMove)
@@ -330,15 +340,18 @@ public class ibrahimCrab : MonoBehaviour {
                 gType = GridType.HOLE;                
                 break;
 
-            case "Egg":                
-                Debug.Log("It is an Egg");
-                MoveToTheGrid(posToMove);
-                hit.collider.gameObject.SetActive(false);
-                GameManager.Instance.eggCount++;
-                GameManager.CollectedEgg();
-                //Destroy(hit.collider.gameObject);
-			    hit.collider.gameObject.SetActive (false);
-                AS.PlayOneShot(EggPickup);
+            case "Egg":  
+			
+
+				Debug.Log("It is an Egg without parent");
+				MoveToTheGrid(posToMove);
+				hit.collider.gameObject.SetActive(false);
+				GameManager.Instance.eggCount++;
+				GameManager.CollectedEgg();
+				AS.PlayOneShot(EggPickup);
+
+
+				
                 break;
 
 
@@ -360,6 +373,12 @@ public class ibrahimCrab : MonoBehaviour {
 
 			StartCoroutine (CheckTheEggs (posToMove));
 			break;
+
+		case "InsideShip":
+			
+			MoveToTheGrid (posToMove);
+			break;
+
             default:
                 
                 break;
@@ -376,9 +395,11 @@ public class ibrahimCrab : MonoBehaviour {
 		if(GameManager.Instance.eggCount >=  Mathf.RoundToInt((GameManager.Instance.eggsList.Count / 2)) ){
 
 			Debug.Log ("Ms Crable : Askim Bende seni cok seviyorum ");
+			GameManager.Instance.ShowEndScene ();
 
 		}else{
 			Debug.Log ("Ms Crable : Ben artik Mr.Crooble i cok seviyorum ");
+			GameManager.Instance.ShowBadEndScene ();
 
 		}
 	}
@@ -392,13 +413,70 @@ public class ibrahimCrab : MonoBehaviour {
             case "wave":
                 Died();
                 break;
+
+		case "Egg":
+
+			break;
+
+
             case "checkpoint":
             case "Checkpoint":
                 GameManager.Instance.UpdateCheckpoint(other.transform);
                 break;
         }
+
+
+
     }
 
+	void SetTransparency(Transform trans , bool t){
+
+		Transform parentTransform = trans as Transform;
+		Transform boatObject = parentTransform.FindChild ("boat") as Transform;
+		Transform topObject = boatObject.FindChild ("top") as Transform;
+		//Shader tempShader = Shader.Find (shaderName);
+		//topObject.gameObject.GetComponent <Renderer> ().material.shader = tempShader;
+		topObject.gameObject.SetActive (t);
+
+	}
+
+	void OnTriggerExit(Collider other){
+
+		switch(other.tag){
+
+
+		case "InsideShip":
+
+			SetTransparency (other.gameObject.transform.parent, true);
+
+
+			break;
+		default:
+
+
+			break;
+
+
+		}
+	}
+
+
+	void OnTriggerStay(Collider other){
+
+		switch(other.tag){
+
+
+		case "InsideShip":
+
+			SetTransparency (other.gameObject.transform.parent , false);
+
+
+			break;
+		
+
+
+		}
+	}
 
     private void Died()
     {
@@ -419,7 +497,7 @@ public class ibrahimCrab : MonoBehaviour {
 		}else if(GameManager.Instance.CrableHealth == 1){
 			GameManager.Instance.CrableHealth = 5;
 			//GameManager.Instance.ResetGame ();
-			GameManager.Instance.GoToMainMenu (false);
+			GameManager.Instance.GoToMainMenu ();
 			GameManager.Instance.PlayerCharacter.died = false;
 
 		}
@@ -436,4 +514,6 @@ public class ibrahimCrab : MonoBehaviour {
 		yield return new WaitForSeconds (inputDelayTime);
 		inputBlocked = 0;
 	}
+
+
 }

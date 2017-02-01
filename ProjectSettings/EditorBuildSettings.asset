@@ -9,3 +9,5 @@ EditorBuildSettings:
     path: Assets/Scenes/FinalScene.unity
   - enabled: 0
     path: Assets/Scenes/ibrahimTestScene.unity
+  - enabled: 0
+    path: Assets/Scenes/Berkan Test.unity
